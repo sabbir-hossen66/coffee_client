@@ -16,18 +16,18 @@ const UpdateCoffe = () => {
     const category = form.category.value;
     const detail = form.detail.value;
     const photoURL = form.photoURL.value;
-    const UpdatedCoffee = { name, quantity, taste, detail, photoURL, category }
+    const coffee = { name, quantity, taste, detail, photoURL, category }
 
     fetch(`http://localhost:5000/coffee/${_id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(UpdatedCoffee)
+      body: JSON.stringify(coffee)
     })
       .then(res => res.json())
       .then(data => {
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: 'success!',
             text: 'Do you want to continue',
