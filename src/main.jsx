@@ -9,6 +9,11 @@ import {
 import App from './App';
 import AddCoffee from './components/AddCoffee';
 import UpdateCoffe from './components/UpdateCoffe';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+
+import AuthProviders from './Providers/AuthProviders';
+
 
 const router = createBrowserRouter([
   {
@@ -25,10 +30,20 @@ const router = createBrowserRouter([
     element: <UpdateCoffe></UpdateCoffe>,
     loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`)
   },
+  {
+    path: '/signin',
+    element: <SignIn></SignIn>
+  },
+  {
+    path: '/signup',
+    element: <SignUp></SignUp>
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProviders>
+      <RouterProvider router={router} />
+    </AuthProviders>
   </React.StrictMode>,
 )
